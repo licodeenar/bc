@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <title>ブラウザで時計</title>
+    <meta charset="UTF-8" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://licodeenar.github.io/bc/img/og-image.png"
+    />
+    <meta property="og:title" content="ブラウザで時計" />
+    <meta
+      property="og:description"
+      content="ブラウザにデジタル時計を表示するだけのサイト"
+    />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="/bc/img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        background-position: center center;
+        background-size: cover;
+        font-family: "Fira Code", monospace;
+        color: #ffffff;
+      }
+
+      @media (max-width: 670px) {
+        /* スマホ */
+        .clock {
+          margin-top: 50px;
+          font-size: 90px;
+          text-align: center;
+        }
+      }
+      @media (max-width: 1100px) and (min-width: 671px) {
+        /* タブレット */
+        .clock {
+          margin-top: 100px;
+          font-size: 160px;
+          text-align: center;
+        }
+      }
+      @media (min-width: 1101px) {
+        /* パソコン */
+        .clock {
+          margin-top: 120px;
+          font-size: 230px;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock" id="clock-display"></div>
+    <script>
+      // 時計を表示
+      setInterval(
+        (function showClock() {
+          let now = new Date();
+          let hour = now.getHours();
+          let min = ("0" + now.getMinutes()).slice(-2);
+          document.getElementById("clock-display").innerHTML = hour + ":" + min;
+          return showClock;
+        })(),
+        1000
+      );
+      // 背景をランダム表示
+      document.body.background =
+        "./img/" + ("0" + Math.floor(Math.random() * 10)).slice(-2) + ".jpg";
+    </script>
+  </body>
+</html>
