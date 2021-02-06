@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" prefix="og: https://ogp.me/ns#">
   <head>
-    <title>ブラウザで時計</title>
+    <title>0:00</title>
     <meta charset="UTF-8" />
     <meta property="og:type" content="website" />
     <meta
@@ -70,6 +70,7 @@
           let hour = now.getHours();
           let min = ("0" + now.getMinutes()).slice(-2);
           document.getElementById("clock-display").innerHTML = hour + ":" + min;
+          document.title = hour + ":" + min;
           return showClock;
         })(),
         1000
