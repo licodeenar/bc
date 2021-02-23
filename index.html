@@ -35,6 +35,13 @@
         color: #ffffff;
       }
 
+      .menu {
+        text-align: right;
+      }
+      .menu_button {
+        width: 32px;
+      }
+
       @media (max-width: 670px) {
         /* スマホ */
         .clock {
@@ -60,25 +67,54 @@
         }
       }
     </style>
+    <script>
+      function reloadImg() {
+        // 背景をランダム表示
+        document.body.background =
+          "./img/" + ("0" + Math.floor(Math.random() * 8)).slice(-2) + ".jpg";
+      }
+      function showClock() {
+        // 時計を表示
+        let now = new Date();
+        let hour = now.getHours();
+        let min = ("0" + now.getMinutes()).slice(-2);
+        document.getElementById("clock-display").innerHTML = hour + ":" + min;
+        document.title = hour + ":" + min + "｜ブラウザで時計";
+      }
+      window.addEventListener("load", function() {
+        // 背景リロード
+        document
+          .getElementById("btn_reload")
+          .addEventListener("click", function() {
+            reloadImg();
+          });
+        // フルスクリーン表示
+        document
+          .getElementById("btn_fullscreen")
+          .addEventListener("click", function() {
+            if (!document.fullscreenElement) {
+              document.body.requestFullscreen();
+            } else {
+              document.exitFullscreen();
+            }
+          });
+      });
+    </script>
   </head>
   <body>
+    <div class="menu">
+      <button id="btn_reload">
+        <img src="img/reload.png" class="menu_button" /></button
+      ><button id="btn_fullscreen">
+        <img src="img/fullscreen.png" class="menu_button" />
+      </button>
+    </div>
     <div class="clock" id="clock-display"></div>
     <script>
-      // 時計を表示
-      setInterval(
-        (function showClock() {
-          let now = new Date();
-          let hour = now.getHours();
-          let min = ("0" + now.getMinutes()).slice(-2);
-          document.getElementById("clock-display").innerHTML = hour + ":" + min;
-          document.title = hour + ":" + min + "｜ブラウザで時計";
-          return showClock;
-        })(),
-        1000
-      );
-      // 背景をランダム表示
-      document.body.background =
-        "./img/" + ("0" + Math.floor(Math.random() * 8)).slice(-2) + ".jpg";
+      showClock();
+      setInterval(showClock, 1000);
+
+      reloadImg();
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
