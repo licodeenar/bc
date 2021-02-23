@@ -42,8 +42,12 @@
       .menu {
         text-align: right;
       }
-      .menu_button {
+      .img_button {
         width: 32px;
+      }
+      .btn{
+        width:48px;
+        height:48px;
       }
       @media (max-width: 670px) {
         /* スマホ */
@@ -118,10 +122,10 @@
   <body>
     <div id="container">
       <div class="menu">
-        <button id="btn_reload">
-          <img src="img/reload.png" class="menu_button" /></button
-        ><button id="btn_fullscreen">
-          <img src="img/fullscreen.png" class="menu_button" />
+        <button id="btn_reload" class="btn">
+          <img src="img/reload.png" class="img_button" /></button
+        ><button id="btn_fullscreen" class="btn">
+          <img src="img/fullscreen.png" class="img_button" />
         </button>
       </div>
       <div class="clock" id="clock-display"></div>
